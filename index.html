@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Base Apparel coming soon page</title>
+  <link rel="stylesheet" href="style.css">
+  <style>.visually-hidden{position:absolute;width:0;overflow:hidden}</style>
+</head>
+<body>
+  
+  <header>
+    <a href="#" class="logo">
+      <span class="visually-hidden">Home page</span>
+      <img src="images/logo.svg" alt="Base Apparel Logo">
+    </a>
+  </header>
+  
+  <main>
+    <h1>
+      <span class="accent">We're</span> coming soon
+    </h1>
+    
+    <p>
+      Hello fellow shoppers! We're currently building our new fashion store. Add your email below to stay up-to-date with announcements and our launch deals.
+    </p>
+    
+    <!-- Method of "dialog" here is for demo purposes only. Should be replaced by "post" in production. -->
+    <form action="#" method="dialog">
+      <label for="input-email" class="visually-hidden">Email Address</label>
+      <input type="email" name="email" id="input-email" placeholder="Email Address" required>
+      <p class="email-error-msg">Please provide a valid email</p>
+      <button class="submit" onclick="checkInput()"><span class="visually-hidden">Submit</span></button>
+    </form>
+  </main>
+  
+  <script>
+    const inputEmail = document.getElementById("input-email");
+    const emailErrorMsg = document.getElementsByClassName("email-error-msg")[0];
+    
+    function checkInput(){
+      if (!inputEmail.checkValidity()) {
+        if (!inputEmail.value.trim()) {
+          emailErrorMsg.innerText = "Please write your email";
+        } else {
+          emailErrorMsg.innerText = "Please provide a valid email";
+        }
+        inputEmail.setAttribute("data-invalid","");
+      } else {
+        inputEmail.removeAttribute("data-invalid");
+      }
+    }
+  </script>
+  
+  <!-- ATTRIBUTION -->
+  
+  <footer class="attribution">
+    Challenge by&nbsp;<a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by&nbsp;<a href="https://www.frontendmentor.io/profile/MahdiAljazairi" target="_blank">Mahdi Aljaza'iri</a>.
+  </footer>
+</body>
+</html>
+

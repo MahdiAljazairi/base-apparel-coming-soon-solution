@@ -1,0 +1,359 @@
+@import url(https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600);
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-underline-position: from-font;
+}
+
+:root {
+  --desaturated-red:     #ce9797;
+  --desaturated-red-50a: rgba(206,151,151,.5);
+  --desaturated-red-45a: rgba(206,151,151,.45);
+  --desaturated-red-35a: rgba(206,151,151,.35);
+  --soft-red:            #f96262;
+  
+  --dark-grayish-red:    #413a3a;
+  --gray: #808080;
+  --light-gray: #bfbfbf;
+  
+  --linear-1: linear-gradient(135deg, white, #fff5f5);
+  --linear-2: linear-gradient(135deg, #f8bfbf, #ee8c8c);
+}
+
+body {
+  display: grid;
+  grid-template: "hdr    hero" auto
+                 "main   hero" auto
+                 "attr   hero" 1fr
+                / 57.65% 1fr;
+  min-height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
+  color: var(--dark-grayish-red);
+}
+
+body::before,
+body::after {
+  content: "";
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body::before {
+  grid-area: hero;
+  background-image: url(images/hero-desktop.jpg);
+  background-position: 20%;
+}
+
+body::after {
+  grid-area: hero / hdr;
+  z-index: -1;
+  background-color: white;
+  background-image: url(images/bg-pattern-desktop.svg),
+                    var(--linear-1);
+  background-position: 50%;
+}
+
+a, button {
+  cursor: pointer;
+  outline-offset: .4em;
+}
+
+a {
+  color: currentColor;
+  transition: text-decoration-color 150ms;
+}
+
+a:hover,
+a:active {
+  text-decoration-color: transparent;
+}
+
+a:active {
+  opacity: .6;
+}
+
+img, picture {
+  display: block;
+  max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 { /* Why include 'em all anyway? */
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  margin: .1em 0 .3em;
+  line-height: 1.08;
+  letter-spacing: .27em;
+}
+
+p {
+  max-width: 45ch; /* i.e. 45 digit zero "0" characters */
+  line-height: 1.75;
+  letter-spacing: .0055em; /* EXTRA-SUPER-ULTRA-FINE-TUNING! */
+  color: var(--desaturated-red);
+  margin-bottom: 2.5em;
+}
+
+.accent {
+  font-weight: 300;
+  color: var(--desaturated-red);
+}
+
+header, main {
+  max-width: 29.3rem;
+  width: 54%;
+  margin: 4rem 19.9%;
+}
+
+header {
+  grid-area: hdr;
+}
+
+.logo {
+  outline-offset: .75rem;
+}
+
+main {
+  grid-area: main;
+}
+
+form {
+  position: relative;
+  text-align: left;
+}
+
+input[type="email"] {
+  width: 95%;
+  padding: 1.2em 6.25em 1.05em 1.95em;
+  border: 2px solid var(--desaturated-red);
+  border-radius: 999vw; /* 👌 */
+  background: none;
+  font: inherit;
+  outline-offset: 4px;
+  transition: border-color 300ms;
+}
+
+input[type="email"]::placeholder {
+  color: var(--desaturated-red-50a);
+}
+
+input[type="email"]:focus-visible {
+  outline-color: transparent;
+  border-color: var(--dark-grayish-red);
+}
+
+@supports selector(:has(*)){
+  input[type="email"]:focus-visible {
+    outline: none;
+  }
+  
+  form:has(input[type="email"]:focus-visible) {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-radius: 999999vw; /* 👌👌 */
+  }
+}
+
+input[type="email"] ~ .email-error-msg {
+  display: none;
+  position: absolute;
+  top: calc(100% + .45rem);
+  left: 2.1rem;
+  right: 0;
+  color: var(--soft-red);
+  font-size: .8rem;
+}
+
+input[type="email"] ~ button.submit::before {
+  font-size: 1rem;
+  display: block;
+  text-align: center;
+  line-height: 1.8;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--soft-red);
+  color: white;
+  border: 2px white solid;
+  box-sizing: content-box;
+  border-radius: 50%;
+  position: absolute;
+  left: -41%;
+  top: 1rem;
+  pointer-events: none;
+}
+
+input[type="email"][data-invalid] {
+  border-color: var(--soft-red);
+}
+
+input[type="email"][data-invalid] ~ .email-error-msg {
+  display: block;
+}
+
+input[type="email"][data-invalid] ~ button.submit::before {
+  content: "!";
+}
+
+button.submit {
+  border: none;
+  border-radius: 999vw; /* 👌 */
+  background-color: var(--gray);
+  background-image: url(images/icon-arrow.svg),
+                    var(--linear-2);
+  background-blend-mode: overlay; /* MAGIC! */
+  background-repeat: no-repeat;
+  background-position: center;
+  max-width: 6.4rem;
+  width: 25%;
+  min-width: 3.3rem;
+  position: absolute;
+  top: -1px; bottom: -1px; /* Never ask why.. */
+  right: 0;
+  z-index: 1;
+  box-shadow: 0 1rem 1.3rem -.2rem var(--desaturated-red-35a);
+  font-family: inherit;
+  transition: background-color 200ms;
+}
+
+button.submit::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  right: 0; left: 0;
+  border-radius: inherit;
+  box-shadow: 0 1rem 1rem 0rem var(--desaturated-red-45a);
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+button.submit:hover,
+button.submit:active {
+  background-color: var(--light-gray);
+}
+
+button.submit:hover::after,
+button.submit:active::after {
+  opacity: 1;
+}
+
+.attribution {
+  grid-area: attr;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 1.5rem 0 3rem;
+  font-size: .8rem;
+}
+
+/*------------------------------------------------------------*/
+
+@media (max-width: 900px) {
+  :root {
+    --max-content-width: 32rem;
+  }
+  
+  body {
+    grid-template: "hdr " auto
+                   "hero" auto
+                   "main" auto
+                   "attr" 1fr
+                  / auto;
+    font-size: .875rem;
+  }
+  
+  body::before,
+  body::after {
+    margin: 0;
+  }
+  
+  body::before {
+    background-image: url(images/hero-mobile.jpg);
+    background-position: initial;
+    height: 250px;
+    margin: 0 max(0rem, 50% - (var(--max-content-width) / 2));
+  }
+  
+  body::after {
+    grid-row: hdr / attr;
+    background-image: var(--linear-1);
+  }
+  
+  h1 {
+    font-size: 2.45rem;
+    letter-spacing: .295em;
+    margin: 0 0 .4em;
+  }
+  
+  p {
+    line-height: 1.55;
+    margin-bottom: 2.3em;
+  }
+  
+  header, main {
+    width: auto;
+  }
+  
+  header {
+    --p-left: 2rem;
+    margin: 0 max(0rem, 50% - (var(--max-content-width) / 2) - var(--p-left));
+    margin-top: 1.85rem;
+    margin-bottom: 2.1rem;
+    padding-left: var(--p-left);
+  }
+  
+  .logo img {
+    height: 1.31rem;
+  }
+  
+  main {
+    padding: 0 2rem 0;
+    text-align: center;
+  }
+  
+  main, main p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  input[type="email"] {
+    width: 100%;
+    padding: 1.1em 6.25em 1em 1.6em;
+  }
+  
+  input[type="email"] ~ button.submit::before {
+    left: -2.1rem;
+    top: .7rem;
+  }
+  
+  button.submit {
+    width: 20.25%;
+  }
+}
+
+@media (max-width: 400px) {
+  .attribution {
+    font-size: .7rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .attribution {
+    font-size: .6rem;
+  }
+}
+
+@media (forced-colors: active) {
+  button.submit {
+    border: 2px solid black;
+    background-image: url(images/icon-arrow.svg);
+    background-blend-mode: difference;
+  }
+}
+
+
+
