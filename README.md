@@ -68,6 +68,8 @@ button.submit:active {
 }
 ```
 
+Now I feel dumb because I could've just used `filter`. Still, It's fun to explore different ways to do something..
+
 ### Continued Development
 
 I need to speed up the process.
