@@ -12,6 +12,7 @@ Frontend Mentor challenges help you improve your coding skills by building reali
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [My Process](#my-process)
+  - [About The Invalid State](#about-the-invalid-state)
   - [What I Learned](#what-i-learned)
   - [Continued Development](#continued-development)
 - [Tools](#tools)
@@ -39,6 +40,12 @@ Users should be able to:
 - Live Site URL: <https://your-live-site-url.com>
 
 ## My Process
+
+### About The Invalid State
+
+When look at the CSS, you'll notice that I used a `[data-invalid]` attribute, with some help of Javascript, on the `input` element to indicate whether it's invalid or not instead of simply an `:invalid` pseudo-class. This is because if I used the pseudo-class, the `input` would show invalid state styles immediately when the page loads -- since, of course, the `input` is `required`. Then, those styles would disappear the moment you type a valid email address.
+
+We don't want that. Because, as per the terms of the challenge, form validation should take place only if there was an attempt to submit the form. And this is exactly what I did. I put an `onclick` to call a function named `checkInput` on my `button`, as it's the form's submit button. This means it would still work even if the form was submitted using the Enter key. The form would behave as if its submit button has been clicked.
 
 ### What I Learned
 
