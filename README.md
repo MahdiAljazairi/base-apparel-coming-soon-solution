@@ -13,7 +13,7 @@ Frontend Mentor challenges help you improve your coding skills by building reali
   - [Links](#links)
 - [My Process](#my-process)
   - [About the Invalid State](#about-the-invalid-state)
-  - [`method="dialog"`??](#method-dialog)
+  - [`method="dialog"`??](#methoddialog)
   - [What I Learned](#what-i-learned)
   - [Continued Development](#continued-development)
 - [Tools](#tools)
